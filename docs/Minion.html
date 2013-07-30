@@ -27,27 +27,7 @@
 
       
         <div id="moduledoc" class="docstring">
-          <p>Executes a function in a module. You can pass arguments, if the function does not require any arguments, pass [].</p>
-
-<p>It does not give you any output. But, the function you are calling could take a callback function that then processes its output.</p>
-
-<h2>Simple Example</h2>
-
-<pre><code>Minion.execute [Minion.me], System, :cmd, [&quot;uname -v&quot;]
-#=&gt; :ok
-</code></pre>
-
-<h2>Example with callback</h2>
-
-<pre><code>shell_command = &quot;uname -v&quot;
-complete = fn(node, result) -&gt;
-    IO.puts &quot;#{node} says: #{result}&quot;
-end
-Minion.execute(Minion.all, Cmd, :local, [shell_command, complete])
-#=&gt; :ok
-#=&gt; minion@MacBook-Air.local says: Darwin Kernel Version 12.4.0: Wed May  1 17:57:12 PDT 2013; root:xnu-2050.24.15~1/RELEASE_X86_64
-#=&gt; minion@raspberry.local says: #1 PREEMPT Sun Jul 21 17:39:58 CDT 2013
-</code></pre>
+          <p>This module allows you to controll all your minions and make them execute commands.</p>
 
         </div>
       
@@ -108,7 +88,28 @@ Minion.execute(Minion.all, Cmd, :local, [shell_command, complete])
   <p class="signature" id="execute/4">
     <strong>execute(nodes, module, function, args)</strong>
   </p>
-  <div class="docstring"></div>
+  <div class="docstring"><p>Executes a function in a module. You can pass arguments, if the function does not require any arguments, pass [].</p>
+
+<p>It does not give you any output. But, the function you are calling could take a callback function that then processes its output.</p>
+
+<h2>Simple Example</h2>
+
+<pre><code>Minion.execute [Minion.me], System, :cmd, [&quot;uname -v&quot;]
+#=&gt; :ok
+</code></pre>
+
+<h2>Example with callback</h2>
+
+<pre><code>shell_command = &quot;uname -v&quot;
+complete = fn(node, result) -&gt;
+    IO.puts &quot;#{node} says: #{result}&quot;
+end
+Minion.execute(Minion.all, Cmd, :local, [shell_command, complete])
+#=&gt; :ok
+#=&gt; minion@MacBook-Air.local says: Darwin Kernel Version 12.4.0: Wed May  1 17:57:12 PDT 2013; root:xnu-2050.24.15~1/RELEASE_X86_64
+#=&gt; minion@raspberry.local says: #1 PREEMPT Sun Jul 21 17:39:58 CDT 2013
+</code></pre>
+</div>
   
 </div><div class="detail">
   <p class="signature" id="me/0">
