@@ -63,6 +63,11 @@
 </li>
 <li>
   <span class="summary_signature">
+    <a href="#perform_distributed/2">perform_distributed/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
     <a href="#random/0">random/0</a>
   </span>
 </li>
@@ -133,6 +138,22 @@ Minion.execute(Minion.all, Cmd, :local, [shell_command, complete])
     <strong>other()</strong>
   </p>
   <div class="docstring"><p>Returns a list of all known minions, but not yourself</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="perform_distributed/2">
+    <strong>perform_distributed(enumerable, function)</strong>
+  </p>
+  <div class="docstring"><p>Applys a function to all elements of a enumerable. Distributes over all known Minions</p>
+
+<h2>Example</h2>
+
+<pre><code>Minion.perform_distributed [1,2,3,4,5,6,7,8], fn(x) -&gt; IO.puts(&quot;Proudly processed by: #{Minion.me}&quot;); x*x end
+#=&gt; Proudly processed by: minion@MacBook-Air.local
+#=&gt; Proudly processed by: minion@fennec.local
+#=&gt; Proudly processed by: minion@raspberry.local
+#=&gt; [1, 4, 9]
+</code></pre>
 </div>
   
 </div><div class="detail">
