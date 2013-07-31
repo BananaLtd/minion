@@ -31,25 +31,48 @@
           <h1>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
 
-<p>First, get dependencies and compile:<br><code>mix deps.get</code><br><code>mix compile</code></p>
+<p>First, git clone the repo:</p>
 
-<p>Then, start with<br><code>elixir --name minion --cookie minion --no-halt -pa ebin --app minion</code></p>
+<pre><code>git clone https://github.com/ChaosSteffen/Minion.git
+cd Minion
+</code></pre>
 
-<p>Or, Start interactive with<br><code>iex --name minion --cookie minion -S mix</code></p>
+<p>After that, get dependencies and compile:  </p>
+
+<pre><code>mix deps.get
+mix compile
+</code></pre>
+
+<p>Then, start with  </p>
+
+<pre><code>elixir --name minion --cookie minion --no-halt -pa ebin --app minion
+</code></pre>
+
+<p>Or, Start interactive with  </p>
+
+<pre><code>iex --name minion --cookie minion -S mix
+</code></pre>
 
 <h1>
 <a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h1>
 
 <p>Look, there is <a href="http://chaossteffen.github.io/Minion/docs/">beautifully generated documentation</a> for you! It describes all the features on the master branch.</p>
 
-<p>To generate the documetation on your own, just run:<br><code>mix deps.get</code><br><code>mix docs</code></p>
+<p>To generate the documetation on your own, just run:  </p>
+
+<pre><code>mix deps.get
+mix docs
+</code></pre>
 
 <p>Then, have a look into your projects <code>/docs</code> folder.</p>
 
 <h1>
 <a name="what-to-do-with-minion" class="anchor" href="#what-to-do-with-minion"><span class="octicon octicon-link"></span></a>What to do with Minion</h1>
 
-<p>Execute shell commands on all Nodes:<br><code>Cmd.all "ls"</code></p>
+<p>Execute shell commands on all Nodes:  </p>
+
+<pre><code>Cmd.all "ls"
+</code></pre>
 
 <h1>
 <a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h1>
