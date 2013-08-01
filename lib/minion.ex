@@ -16,17 +16,17 @@ defmodule Minion do
 
   @doc "Returns a list of all known minions including yourself"
   def all do
-  	[Node.self | Node.list]
+    [Node.self | Node.list]
   end
-  
+
   @doc "Returns yourself"
   def me do
-  	Node.self
+    Node.self
   end
 
   @doc "Returns a list of all known minions, but not yourself"
   def other do
-  	Node.list
+    Node.list
   end
 
   @doc "Returns a random Minion"
@@ -34,17 +34,12 @@ defmodule Minion do
     Random.sample(all)
   end
 
-  @doc "Spawns a link on a random minion"
-  def spawn_link fun do
-    Node.spawn_link random, fun
-  end
-
   @doc """
   Applys a function to all elements of a enumerable. Distributes over all known Minions
 
   ## Example
 
-      Minion.perform_distributed [1,2,3,4,5,6,7,8], fn(x) -> IO.puts("Proudly processed by: #\{Minion.me\}"); x*x end
+      Minion.perform_distributed [1,2,3], fn(x) -> IO.puts("Proudly processed by: #\{Minion.me\}"); x*x end
       #=> Proudly processed by: minion@MacBook-Air.local
       #=> Proudly processed by: minion@fennec.local
       #=> Proudly processed by: minion@raspberry.local
@@ -55,15 +50,16 @@ defmodule Minion do
     current = self
 
     enumerable |> Enum.map(fn(x) ->
-      Minion.spawn_link(fn ->
-        current <- { self, fun.(x) } 
-      end)
+      Node.spawn_link random, Minion, :evaluate, [current, fun, x]
     end) |> Enum.map(fn(pid) ->
       receive do
         { ^pid, result } -> result
       end
     end)
+  end
 
+  def evaluate initiator, fun, args do
+    initiator <- { self, fun.(args) }
   end
 
   @doc """
@@ -81,7 +77,7 @@ defmodule Minion do
 
       shell_command = "uname -v"
       complete = fn(node, result) ->
-				IO.puts "\#{node} says: \#{result}"
+        IO.puts "\#{node} says: \#{result}"
       end
       Minion.execute(Minion.all, Cmd, :local, [shell_command, complete])
       #=> :ok
