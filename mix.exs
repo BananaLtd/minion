@@ -5,8 +5,9 @@ defmodule Minion.Mixfile do
     [ app: :minion,
       version: "0.0.1",
       name: "Minion",
-      source_url: "https://github.com/ChaosSteffen/Minion",
-      homepage_url: "https://github.com/ChaosSteffen/Minion",
+      source_url: "https://github.com/BananaLtd/minion",
+      homepage_url: "http://bananaltd.github.io/minion/",
+      elixir: "~> 0.10.0",
       deps: deps ]
   end
 

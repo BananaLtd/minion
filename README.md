@@ -2,7 +2,7 @@
 
 First, git clone the repo:
 ```
-git clone https://github.com/BananaLtd/Minion.git minion
+git clone https://github.com/bananaltd/minion.git minion
 cd minion
 ```
 
@@ -24,7 +24,7 @@ iex --name minion --cookie minion -S mix
 
 # Documentation
 
-Look, there is [beautifully generated documentation](http://BananaLtd.github.io/Minion/docs/) for you! It describes all the features on the master branch.
+Look, there is [beautifully generated documentation](http://bananaltd.github.io/minion/docs/) for you! It describes all the features on the master branch.
 
 To generate the documetation on your own, just run:
 ```
