@@ -48,6 +48,11 @@
 </li>
 <li>
   <span class="summary_signature">
+    <a href="#evaluate/3">evaluate/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
     <a href="#execute/4">execute/4</a>
   </span>
 </li>
@@ -69,11 +74,6 @@
 <li>
   <span class="summary_signature">
     <a href="#random/0">random/0</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
-    <a href="#spawn_link/1">spawn_link/1</a>
   </span>
 </li>
 <li>
@@ -100,8 +100,14 @@
 </div>
   
 </div><div class="detail">
+  <p class="signature" id="evaluate/3">
+    <strong>evaluate(initiator, fun, args)</strong>
+  </p>
+  <div class="docstring"></div>
+  
+</div><div class="detail">
   <p class="signature" id="execute/4">
-    <strong>execute(nodes, module, function, args)</strong>
+    <strong>execute(nodes, module, fun, args)</strong>
   </p>
   <div class="docstring"><p>Executes a function in a module. You can pass arguments, if the function does not require any arguments, pass [].</p>
 
@@ -117,7 +123,7 @@
 
 <pre><code>shell_command = &quot;uname -v&quot;
 complete = fn(node, result) -&gt;
-    IO.puts &quot;#{node} says: #{result}&quot;
+  IO.puts &quot;#{node} says: #{result}&quot;
 end
 Minion.execute(Minion.all, Cmd, :local, [shell_command, complete])
 #=&gt; :ok
@@ -142,13 +148,13 @@ Minion.execute(Minion.all, Cmd, :local, [shell_command, complete])
   
 </div><div class="detail">
   <p class="signature" id="perform_distributed/2">
-    <strong>perform_distributed(enumerable, function)</strong>
+    <strong>perform_distributed(enumerable, fun)</strong>
   </p>
   <div class="docstring"><p>Applys a function to all elements of a enumerable. Distributes over all known Minions</p>
 
 <h2>Example</h2>
 
-<pre><code>Minion.perform_distributed [1,2,3,4,5,6,7,8], fn(x) -&gt; IO.puts(&quot;Proudly processed by: #{Minion.me}&quot;); x*x end
+<pre><code>Minion.perform_distributed [1,2,3], fn(x) -&gt; IO.puts(&quot;Proudly processed by: #{Minion.me}&quot;); x*x end
 #=&gt; Proudly processed by: minion@MacBook-Air.local
 #=&gt; Proudly processed by: minion@fennec.local
 #=&gt; Proudly processed by: minion@raspberry.local
@@ -161,13 +167,6 @@ Minion.execute(Minion.all, Cmd, :local, [shell_command, complete])
     <strong>random()</strong>
   </p>
   <div class="docstring"><p>Returns a random Minion</p>
-</div>
-  
-</div><div class="detail">
-  <p class="signature" id="spawn_link/1">
-    <strong>spawn_link(function)</strong>
-  </p>
-  <div class="docstring"><p>Spawns a link on a random minion</p>
 </div>
   
 </div><div class="detail">
