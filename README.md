@@ -43,5 +43,6 @@ Cmd.all "ls"
 
 # Contributors
 
+* Steffen Schröder ([@ChaosSteffen](https://github.com/ChaosSteffen))
 * Christoph Grabo ([@asaaki](https://github.com/asaaki))
 * Sascha Depold ([@sdepold](https://github.com/sdepold))
