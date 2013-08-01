@@ -2,7 +2,7 @@
 
 First, git clone the repo:
 ```
-git clone https://github.com/bananaltd/minion.git minion
+git clone https://github.com/bananaltd/minion.git
 cd minion
 ```
 
