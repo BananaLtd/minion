@@ -1,10 +1,10 @@
-defmodule Mix.Tasks.Generate do
+defmodule Mix.Tasks.Docs.Publish do
   use Mix.Task
 
-  @shortdoc "Generates gh-pages"
+  @shortdoc "Publishes docs to gh-pages"
 
   @moduledoc """
-  Generates gh-pages from documentation
+  Generates documentation and commits to gh-pages branch 
   """
   def run(_) do
     System.cmd "git co master"
@@ -14,7 +14,6 @@ defmodule Mix.Tasks.Generate do
     System.cmd "cp -R /tmp/minion-docs/ docs/"
     System.cmd "git add docs"
     System.cmd "git commit -m 'Update docs'"
-    System.cmd "git push"
     System.cmd "rm -rf /tmp/minion-docs"
     System.cmd "git co master"
   end
