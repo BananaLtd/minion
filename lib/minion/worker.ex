@@ -1,6 +1,6 @@
 defmodule Minion.Worker do
-
   @handshake "BANANA"
+  @cookie_sum Enum.reduce(atom_to_list(Node.get_cookie), 0, fn(x, acc) -> x + acc end) 
 
   def start_link do
     :timer.apply_interval(1000, __MODULE__, :announce, [])
@@ -12,7 +12,8 @@ defmodule Minion.Worker do
   def announce do
     if length(Node.list) == 0 do
       {:ok, socket} = :gen_udp.open 6789
-      :gen_udp.send(socket, {224,0,0,1}, 6790, "#{@handshake} #{Node.self}")
+
+      :gen_udp.send(socket, {224,0,0,1}, 6790, "#{@handshake} #{@cookie_sum} #{Node.self}")
       :gen_udp.close socket
     end
   end
@@ -37,10 +38,14 @@ defmodule Minion.Worker do
   end
 
   def process_message(message) do
-    << @handshake, " ", name :: binary >> = "#{message}"
-
-    Node.connect :"#{name}"
-
-    # IO.puts "New node connected: #{inspect(name)}" # Debug
+    case "#{message}" do
+      << @handshake, " ", @cookie_sum, " ", name :: binary>> ->
+        Node.connect(:"#{name}")
+      << @handshake, " ", name :: binary>> ->
+        # connection attempt from old minion version
+        Node.connect(:"#{name}")
+      _ ->
+        nil
+    end
   end
 end
