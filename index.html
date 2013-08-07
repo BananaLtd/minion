@@ -29,29 +29,40 @@
       <div class="inner clearfix">
         <section id="main-content">
           <h1>
-<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
+<a name="how-to-create-a-minion-based-project" class="anchor" href="#how-to-create-a-minion-based-project"><span class="octicon octicon-link"></span></a>How to create a Minion-based project</h1>
 
-<p>First, git clone the repo:</p>
+<p>Download the minion Mix task and install it to your local mix tasks:</p>
 
-<pre><code>git clone https://github.com/bananaltd/minion.git
-cd minion
+<pre><code>mix local.install http://bananaltd.github.io/minion/archive/minion-0.0.1.ez
 </code></pre>
 
-<p>After that, get dependencies and compile:</p>
+<p>Create a elixir project with minion dependecies:</p>
 
-<pre><code>mix deps.get
-mix compile
+<pre><code>mix minion your_project_name
 </code></pre>
 
-<p>Then, start with</p>
+<p>Then, enter your project directory:</p>
 
-<pre><code>elixir --name minion --cookie minion --no-halt -pa ebin --app minion
+<pre><code>cd your_project_name
 </code></pre>
 
-<p>Or, Start interactive with</p>
+<p>Now, you can start your minion project in an interactive shell:</p>
 
 <pre><code>iex --name minion --cookie minion -S mix
 </code></pre>
+
+<p>Or, you can start it as a silent background task:</p>
+
+<pre><code>mix compile
+elixir --name minion --cookie minion --no-halt -pa ebin --app minion
+</code></pre>
+
+<h1>
+<a name="what-can-minion-do-for-me" class="anchor" href="#what-can-minion-do-for-me"><span class="octicon octicon-link"></span></a>What can Minion do for me</h1>
+
+<p>If you have multiple instances of your minion-based project you can distribute tasks to all of your nodes. It works just like magic!</p>
+
+<p><em>We will show you some demo code soon. Meanwhile have a look at <a href="http://bananaltd.github.io/gru/">Gru</a>, it uses Minion.</em></p>
 
 <h1>
 <a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h1>
@@ -65,26 +76,6 @@ mix docs
 </code></pre>
 
 <p>Then, have a look into your projects <code>/docs</code> folder.</p>
-
-<h1>
-<a name="how-to-create-a-minion-based-project" class="anchor" href="#how-to-create-a-minion-based-project"><span class="octicon octicon-link"></span></a>How to create a Minion-based project</h1>
-
-<p>Download minion Mix task and install it to your local mix tasks:</p>
-
-<pre><code>mix local.install http://bananaltd.github.io/minion/archive/minion-0.0.1.ez
-</code></pre>
-
-<p>Create a elixir project with minion dependecies:</p>
-
-<pre><code>mix minion your_project_name
-</code></pre>
-
-<h1>
-<a name="what-can-minion-do-for-me" class="anchor" href="#what-can-minion-do-for-me"><span class="octicon octicon-link"></span></a>What can Minion do for me</h1>
-
-<p>If you have multiple instances of your minion-based project you can distribute tasks to all of your node. It works just like magic!</p>
-
-<p><em>We will show you some demo code soon. Meanwhile have a look at <a href="http://bananaltd.github.io/gru/">Gru</a>, it uses Minion.</em></p>
 
 <h1>
 <a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h1>
