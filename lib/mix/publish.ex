@@ -9,12 +9,12 @@ defmodule Mix.Tasks.Docs.Publish do
   def run(_) do
     System.cmd "git co master"
     System.cmd "mix do deps.get, docs"
-    System.cmd "cp -R docs/ /tmp/minion-docs/"
+    System.cmd "mv -R docs/ /tmp/minion-docs/"
     System.cmd "git co gh-pages"
-    System.cmd "cp -R /tmp/minion-docs/ docs/"
+    System.cmd "rm -rf docs/"
+    System.cmd "mv -R /tmp/minion-docs/ docs/"
     System.cmd "git add docs"
-    System.cmd "git commit -m 'Update docs'"
-    System.cmd "rm -rf /tmp/minion-docs"
+    System.cmd "git commit -m 'Updated docs'"
     System.cmd "git co master"
   end
 end
