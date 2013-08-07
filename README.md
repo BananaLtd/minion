@@ -34,12 +34,22 @@ mix docs
 
 Then, have a look into your projects `/docs` folder.
 
-# What to do with Minion
+# How to create a Minion-based project
 
-Execute shell commands on all Nodes:
+Download minion Mix task and install it to your local mix tasks:
 ```
-Cmd.all "ls"
+mix local.install http://bananaltd.github.io/minion/archive/minion.ez
 ```
+
+Create a elixir project with minion dependecies:
+```
+mix minion your_project_name
+```
+
+# What can Minion do for me
+If you have multiple instances of your minion-based project you can distribute tasks to all of your node. It works just like magic!
+
+*We will show you some demo code soon. Meanwhile have a look at [Gru](http://bananaltd.github.io/gru/), it uses Minion.*
 
 # Contributors
 
