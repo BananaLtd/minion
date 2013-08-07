@@ -1,26 +1,36 @@
-# Installation
+# How to create a Minion-based project
 
-First, git clone the repo:
+Download the minion Mix task and install it to your local mix tasks:
 ```
-git clone https://github.com/bananaltd/minion.git
-cd minion
-```
-
-After that, get dependencies and compile:
-```
-mix deps.get
-mix compile
+mix local.install http://bananaltd.github.io/minion/archive/minion-0.0.1.ez
 ```
 
-Then, start with
+Create a elixir project with minion dependecies:
 ```
-elixir --name minion --cookie minion --no-halt -pa ebin --app minion
+mix minion your_project_name
 ```
 
-Or, Start interactive with
+Then, enter your project directory:
+```
+cd your_project_name
+```
+
+Now, you can start your minion project in an interactive shell:
 ```
 iex --name minion --cookie minion -S mix
 ```
+
+Or, you can start it as a silent background task:
+```
+mix compile
+elixir --name minion --cookie minion --no-halt -pa ebin --app minion
+```
+
+# What can Minion do for me
+If you have multiple instances of your minion-based project you can distribute tasks to all of your nodes. It works just like magic!
+
+*We will show you some demo code soon. Meanwhile have a look at [Gru](http://bananaltd.github.io/gru/), it uses Minion.*
+
 
 # Documentation
 
@@ -34,22 +44,6 @@ mix docs
 
 Then, have a look into your projects `/docs` folder.
 
-# How to create a Minion-based project
-
-Download minion Mix task and install it to your local mix tasks:
-```
-mix local.install http://bananaltd.github.io/minion/archive/minion-0.0.1.ez
-```
-
-Create a elixir project with minion dependecies:
-```
-mix minion your_project_name
-```
-
-# What can Minion do for me
-If you have multiple instances of your minion-based project you can distribute tasks to all of your node. It works just like magic!
-
-*We will show you some demo code soon. Meanwhile have a look at [Gru](http://bananaltd.github.io/gru/), it uses Minion.*
 
 # Contributors
 
