@@ -38,7 +38,7 @@ Then, have a look into your projects `/docs` folder.
 
 Download minion Mix task and install it to your local mix tasks:
 ```
-mix local.install http://bananaltd.github.io/minion/archive/minion.ez
+mix local.install http://bananaltd.github.io/minion/archive/minion-0.0.1.ez
 ```
 
 Create a elixir project with minion dependecies:
