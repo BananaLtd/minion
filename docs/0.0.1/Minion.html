@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Minion</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+    <script type="text/javascript" charset="utf-8">
+      relpath = '';
+      if (relpath != '') relpath += '/';
+    </script>
+
+    <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+  </head>
+
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+
+    <div id="content">
+      <h1>
+        Minion
+        
+      </h1>
+
+      
+        <div id="moduledoc" class="docstring">
+          <p>This module allows you to controll all your minions and make them execute commands.</p>
+
+        </div>
+      
+
+      <a href="" target="_blank" class="view_source">Source</a>
+
+      
+
+      
+
+      
+        <h2 id="functions_summary">Functions summary</h2>
+        <ul class="summary">
+          <li>
+  <span class="summary_signature">
+    <a href="#all/0">all/0</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#evaluate/3">evaluate/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#execute/4">execute/4</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#me/0">me/0</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#other/0">other/0</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#perform_distributed/2">perform_distributed/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#random/0">random/0</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#start/2">start/2</a>
+  </span>
+</li>
+
+        </ul>
+      
+
+      
+
+      
+
+      
+        <div id="functions_details" class="details_list">
+          <h2>Functions</h2>
+          <div class="detail">
+  <p class="signature" id="all/0">
+    <strong>all()</strong>
+  </p>
+  <div class="docstring"><p>Returns a list of all known minions including yourself</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="evaluate/3">
+    <strong>evaluate(initiator, fun, args)</strong>
+  </p>
+  <div class="docstring"></div>
+  
+</div><div class="detail">
+  <p class="signature" id="execute/4">
+    <strong>execute(nodes, module, fun, args)</strong>
+  </p>
+  <div class="docstring"><p>Executes a function in a module. You can pass arguments, if the function does not require any arguments, pass [].</p>
+
+<p>It does not give you any output. But, the function you are calling could take a callback function that then processes its output.</p>
+
+<h2>Simple Example</h2>
+
+<pre><code>Minion.execute [Minion.me], System, :cmd, [&quot;uname -v&quot;]
+#=&gt; :ok
+</code></pre>
+
+<h2>Example with callback</h2>
+
+<pre><code>shell_command = &quot;uname -v&quot;
+complete = fn(node, result) -&gt;
+  IO.puts &quot;#{node} says: #{result}&quot;
+end
+Minion.execute(Minion.all, Cmd, :local, [shell_command, complete])
+#=&gt; :ok
+#=&gt; minion@MacBook-Air.local says: Darwin Kernel Version 12.4.0: Wed May  1 17:57:12 PDT 2013; root:xnu-2050.24.15~1/RELEASE_X86_64
+#=&gt; minion@raspberry.local says: #1 PREEMPT Sun Jul 21 17:39:58 CDT 2013
+</code></pre>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="me/0">
+    <strong>me()</strong>
+  </p>
+  <div class="docstring"><p>Returns yourself</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="other/0">
+    <strong>other()</strong>
+  </p>
+  <div class="docstring"><p>Returns a list of all known minions, but not yourself</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="perform_distributed/2">
+    <strong>perform_distributed(enumerable, fun)</strong>
+  </p>
+  <div class="docstring"><p>Applys a function to all elements of a enumerable. Distributes over all known Minions</p>
+
+<h2>Example</h2>
+
+<pre><code>Minion.perform_distributed [1,2,3], fn(x) -&gt; IO.puts(&quot;Proudly processed by: #{Minion.me}&quot;); x*x end
+#=&gt; Proudly processed by: minion@MacBook-Air.local
+#=&gt; Proudly processed by: minion@fennec.local
+#=&gt; Proudly processed by: minion@raspberry.local
+#=&gt; [1, 4, 9]
+</code></pre>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="random/0">
+    <strong>random()</strong>
+  </p>
+  <div class="docstring"><p>Returns a random Minion</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="start/2">
+    <strong>start(_type, _args)</strong>
+  </p>
+  <div class="docstring"></div>
+  
+</div>
+        </div>
+      
+
+      
+
+      
+    </div>
+  </body>
+</html>
