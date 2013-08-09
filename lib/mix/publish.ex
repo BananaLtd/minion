@@ -21,3 +21,28 @@ defmodule Mix.Tasks.Docs.Publish do
     System.cmd "git co master"
   end
 end
+
+defmodule Mix.Tasks.Archive.Publish do
+  use Mix.Task
+
+  @shortdoc "Publishes archive to gh-pages"
+
+  @moduledoc """
+  Generates archive and commits to gh-pages branch 
+  """
+  def run(_) do
+    Mix.Project.get!
+    version = Mix.Project.config[:version]
+
+    System.cmd "git co master"
+    System.cmd "mix do archive"
+    System.cmd "rm -f /tmp/minion-#{version}.ez"
+    System.cmd "mv minion-#{version}.ez /tmp/"
+    System.cmd "git co gh-pages"
+    System.cmd "rm -f archive/minion-#{version}.ez"
+    System.cmd "mv /tmp/minion-#{version}.ez archive/"
+    System.cmd "git add archive/"
+    System.cmd "git commit -m 'Updated archive'"
+    System.cmd "git co master"
+  end
+end
