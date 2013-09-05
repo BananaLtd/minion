@@ -38,10 +38,11 @@ defmodule Minion.Worker do
   end
 
   def process_message(message) do
-    case "#{message}" do
-      << @handshake, " ", @cookie_sum, " ", name :: binary>> ->
+    cookie_sum_as_string = "#{@cookie_sum}"
+    case String.split("#{message}") do
+      [@handshake, cookie_sum_as_string, name] ->
         Node.connect(:"#{name}")
-      << @handshake, " ", name :: binary>> ->
+      [@handshake, name] ->
         # connection attempt from old minion version
         Node.connect(:"#{name}")
       _ ->
