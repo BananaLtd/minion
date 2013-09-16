@@ -3,7 +3,7 @@ defmodule Minion.Mixfile do
 
   def project do
     [ app: :minion,
-      version: "0.0.1",
+      version: "0.0.2",
       name: "Minion",
       source_url: "https://github.com/BananaLtd/minion",
       homepage_url: "http://bananaltd.github.io/minion/",
@@ -21,6 +21,7 @@ defmodule Minion.Mixfile do
   # { :foobar, "0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
     [ { :ex_doc, github: "elixir-lang/ex_doc", ref: "745f15b4659aca79a19ed28c719b9354ad916898" },
-      { :random, github: "mururu/elixir-random" } ]
+      { :random, github: "mururu/elixir-random" },
+      { :json, "0.2.3", [github: "cblage/elixir-json", tag: "v0.2.3"] } ]
   end
 end

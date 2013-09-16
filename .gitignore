@@ -8,3 +8,4 @@ ebin
 *.o
 *.ez
 erl_crash.dump
+states
