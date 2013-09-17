@@ -116,10 +116,14 @@ defmodule Minion do
     File.write("states", contents)
   end
 
-  def get_state key do
+  def get_state pid // nil, key do
     {:ok, states} = Minion.states
 
-    HashDict.get(states, key)
+    if pid do
+      pid <- {self, HashDict.get(states, key)}
+    else 
+      HashDict.get(states, key)
+    end
   end
 
   def set_state key, value do
