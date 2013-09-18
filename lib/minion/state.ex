@@ -1,4 +1,4 @@
-defmodule State do
+defmodule Minion.State do
   @moduledoc """
   This module allows you to save key-value style states on disk.
   """
@@ -19,7 +19,7 @@ defmodule State do
   end
 
   def all pid do
-    {:ok, contents} = State.all
+    {:ok, contents} = Minion.State.all
 
     pid <- {self, contents}
   end
@@ -31,7 +31,7 @@ defmodule State do
   end
 
   def get pid // nil, key do
-    {:ok, states} = State.all
+    {:ok, states} = Minion.State.all
 
     if pid do
       pid <- {self, HashDict.get(states, key)}
@@ -41,14 +41,14 @@ defmodule State do
   end
 
   def set key, value do
-    {:ok, states} = State.all
+    {:ok, states} = Minion.State.all
 
-    State.persist HashDict.put(states, key, value)
+    Minion.State.persist HashDict.put(states, key, value)
   end
 
   def delete_state key do
-    {:ok, states} = State.all
+    {:ok, states} = Minion.State.all
 
-    State.persist HashDict.delete(states, key)
+    Minion.State.persist HashDict.delete(states, key)
   end
 end
