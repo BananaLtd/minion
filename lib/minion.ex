@@ -95,46 +95,4 @@ defmodule Minion do
 
     :ok
   end
-
-  def states do
-    if File.exists?("states") do
-      case File.read("states") do
-        {:error, :enoent} -> {:ok, []}
-        {:ok, foo} ->
-          {:ok, contents} = JSON.decode(foo)
-        _ ->
-          {:ok, []}
-      end
-    else
-      {:ok, []}
-    end
-  end
-
-  def write_states states do
-    {:ok, contents} = JSON.encode(states)
-
-    File.write("states", contents)
-  end
-
-  def get_state pid // nil, key do
-    {:ok, states} = Minion.states
-
-    if pid do
-      pid <- {self, HashDict.get(states, key)}
-    else 
-      HashDict.get(states, key)
-    end
-  end
-
-  def set_state key, value do
-    {:ok, states} = Minion.states
-
-    Minion.write_states HashDict.put(states, key, value)
-  end
-
-  def delete_state key do
-    {:ok, states} = Minion.states
-
-    Minion.write_states HashDict.delete(states, key)
-  end
 end
