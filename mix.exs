@@ -20,7 +20,7 @@ defmodule Minion.Mixfile do
   # Returns the list of dependencies in the format:
   # { :foobar, "0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
-    [ { :ex_doc, github: "elixir-lang/ex_doc", ref: "745f15b4659aca79a19ed28c719b9354ad916898" },
+    [ { :ex_doc, github: "elixir-lang/ex_doc" },
       { :random, github: "mururu/elixir-random" },
       { :json, "0.2.3", [github: "cblage/elixir-json", tag: "v0.2.3"] } ]
   end
